@@ -1,0 +1,111 @@
+\documentclass[a4paper, 12pt, openany]{book}
+
+\input{preambula}
+
+\title{Вопрос по выбору}
+\author{Алексей Кожарин}
+\date{\today}
+\usepackage[left=1.27cm,right=1.27cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{fancyhdr} % Для колонтитулов
+
+\renewcommand{\baselinestretch}{1.3}
+
+\makeatletter % Убирает нумерацию на страницах, где \chapter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+	\thispagestyle{empty}% original style: plain
+	\global\@topnum\z@
+	\@afterindentfalse
+	\secdef\@chapter\@schapter}
+\makeatother
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\textbf{\thepage}}
+
+\setcounter{secnumdepth}{0}
+
+\newcommand\invisiblesection[1]{%
+	\refstepcounter{section}%
+	\addcontentsline{toc}{section}{#1}%
+	\sectionmark{#1}}
+
+
+\begin{document}
+	\input{titlepage}
+	
+	\invisiblesection{Использование спектрографии в исследовании небесных объектов}
+	\section{Предисловие}
+	\textbf{SN 2009ip} сверхновая вспыхнула в сентябре 2012 года после нескольких предварительных вспышек. Сверхновая располагалась в галактике NGC 7259. В контексте данной задачи мы попытаемся оценить угловой диаметр туманности появившийся из остатков сверхновой на момент июня 2022 года. Также, будем пренебрегать вкладом предварительных вспышек в формирование газопылевого облака.
+		
+	\section{Обработка данных}
+	\begin{wrapfigure}{l}{0.56\textwidth}
+
+		\center{\includegraphics[width=\linewidth]{spectra}}
+		\caption{ Спектр сверхновой SN 2009ip \\
+			Мы будем использовать спектр водорода.
+		}
+		\label{pic1}
+	\end{wrapfigure}
+	Из открытых источников определим расстояние до галактики в которой происходит коллапс. Примем его равным $L = 25 $ Мпк (1пк = 206265 а.е). Далее, мы будем рассматривать спектры сверхновой. В них присутствуют яркие эмиссионные линии атомарного водорода, самая заметная из которых - $H \alpha$ с длиной волны около 6560 ангстрем. Однако левее этой линии, на чуть меньших длинах волн, видна достаточно четкая линия поглощения. Это не есть случайная близость двух линий - такая же компонента присутствует и у линии $H \beta$ . Эта линия - результат поглощения света быстро расширяющейся оболочкой взорвавшейся звезды. Ее разные участки имеют разные направления скорости, но с Земли сильнее всего проявляет себя часть оболочки, летящая по направлению к нам. За счет очень большой скорости линия поглощения смещена в фиолетовую сторону относительно линии излучения самой звезды. Именно эту скорость мы будем определять из спектра.	
+	
+	\newpage
+	
+	Необходимо учитывать, что разные молекулы газа имеют разные скорости, что приводит к значительной ширине линии поглощения. Так как нас интересуют размеры туманности или, строго говоря, угловое расстояние до ее видимого центра до края, мы будем рассматривать самые быстрые молекулы, создающие левый край спектральной линии. Из графика определим длину волны левого крыла линии поглощения и линии излучения $H \alpha $ самой звезды:
+	\begin{equation}
+	\label{eq1}
+	\lambda = 6000A + \dfrac{51}{127} * 1000A = 6402 A
+	\end{equation}
+	\begin{equation}
+	\label{eq2}
+	\lambda_{0} = 6000 A + \dfrac{72}{127} *1000A = 6567 A
+	\end{equation}
+	
+	Длина волны $\lambda_{0}$ близка к лабораторной длине волны $H \alpha$ , однако на нее, вообще гворя может влиять лучевая скорость самой сверхновой звезды и ее галактики в целом. Отсюда получаем лучевую скорость самых быстрых атомов:
+	
+	\begin{equation}
+	\label{eq3}
+	\upsilon_{\alpha} = c \dfrac{\lambda_{0} - \lambda}{\lambda_{0}} =  7500 \; km/s
+	\end{equation}
+	
+	Попробуем определить по линии $H \beta$ :
+	4882  4780
+	\begin{equation}
+	\label{eq4}
+	\lambda_{b} = 4780 A
+	\end{equation}
+	\begin{equation}
+	\label{eq5}
+	\lambda_{b0} = 4882 A
+	\end{equation}
+	
+	\begin{equation}
+	\label{eq6}
+	\upsilon_{\beta} = c \dfrac{\lambda_{b0} - \lambda_{b}}{\lambda_{b0}} =  6300 \; km/s
+	\end{equation}
+	
+	
+	За оценку лучевой скорости будем брать $\upsilon = 7000 \; km/s $
+
+	\section{Теоретическая модель}
+	
+Полученная скорость очень велика, несопоставимо выше второй космической для окрестностей звезды,  но все же заметно меньше скорости света. Поэтому для определения углового диаметра для наблюдения в 2022 году достаточно определить ее линейный диаметр через время $T = 9.75$ лет после взрыва и поделить на расстояние:
+	\begin{equation}
+	\label{eq7}
+	\rho = \dfrac{2 \upsilon T}{L} = \dfrac{4.3*10^{12} km}{7.7 * 10^{17} km} = 6 * 10^{-6} = 1''.
+	\end{equation}
+	\includegraphics[scale=0.6]{shema}  
+	
+	\newpage
+	\begin{centering}
+	\section{Литература}
+	\begin{itemize}
+	\item Ландсберг Г.С. , "Оптика" , 2010, 978-5-9221-0314-5
+	\item Andrea Pastorello and Cosimo Inserra, "Interacting Supernovae and Supernova Impostors. SN 2009ip, is this the end?", October 2012, The Astrophysical Journal 767(1), 10.1088/0004-637X/767/1/1
+	\item Угольников О.С, XXV Всероссийская олимпиада школьников по астрономии, Волгоград 2018
+	\end{itemize}
+	\end{centering}
+
+\end{document}
